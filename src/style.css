@@ -2,6 +2,9 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+.displayflex {
+  display: flex;
+}
 .accordion-container {
   position: relative;
 }

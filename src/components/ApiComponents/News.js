@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
 export default function News() {
+    
     return (
         <Carousel>
             <Carousel.Item>

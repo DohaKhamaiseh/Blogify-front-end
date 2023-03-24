@@ -11,12 +11,7 @@ export default function MainPage(props) {
       <FirstCol />
       <SecondCol />
       <div className='thirdcol'>
-        {/* <div>{progData.map(e => {
-          return ( */}
         <ThirdCol />
-        {/* )
-        })}
-        </div> */}
         <Button onClick={() => props.loginWithRedirect()} variant="contained">Get Started With Blog Post</Button>
       </div>
     </div>

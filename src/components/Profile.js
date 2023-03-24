@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Createpost from './Createpost';
+import Createpost from './Posts/Createpost';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../profile.css'
-import { Button } from 'react-bootstrap';
-import PostById from './PostByID';
+import PostById from './Posts/PostByID';
+import Profilecard from './Posts/Profilecard'
 
 export default function Profile() {
   const [pageWidth, setPageWidth] = useState(window.innerWidth);
@@ -22,32 +21,13 @@ export default function Profile() {
     };
   }, []);
   return (
-    <div className='my-4 mx-4'>
-      {pageWidth > 500 ?
-        <Row className='mx-4 my-4'>
-          <Col xs={2}>
+    <div>
+      {pageWidth > 1024 ?
+        <Row className='mx-4'>
+          <Col xs={3}>
+            <Profilecard />
           </Col>
-          <Col xs={8}>
-            <Card>
-              <div className='profilecard'>
-                <Col xs={2}>
-                  <Card.Img className='imginprofile' variant="top" src="https://avatars.githubusercontent.com/u/103138514?s=400&u=6e1c5ea7d722cd568da4c347c96d3738df52b36c&v=4" />
-                </Col>
-                <Col xs={8}>
-                  <Card.Body>
-                    <Card.Title>Abdullah Abu Hamad</Card.Title>
-                    <Card.Text>
-                      <p>Lorem</p>
-                    </Card.Text>
-                  </Card.Body>
-
-                </Col>
-                <div className='editdeletebuttons'>
-                  <Button variant='primary'>Edit </Button>
-                </div>
-
-              </div>
-            </Card>
+          <Col xs={6}>
             <br />
             <Createpost />
             <PostById />
@@ -57,30 +37,10 @@ export default function Profile() {
         </Row>
         :
         <Col xs={12}>
-          <Card>
-            <div className='profilecard'>
-              <Col xs={2}>
-                <Card.Img className='imginprofile' variant="top" src="https://avatars.githubusercontent.com/u/103138514?s=400&u=6e1c5ea7d722cd568da4c347c96d3738df52b36c&v=4" />
-              </Col>
-              <Col xs={8}>
-                <Card.Body>
-                  <Card.Title>Abdullah Abu Hamad</Card.Title>
-                  <Card.Text>
-                    <p>Lorem</p>
-                  </Card.Text>
-                </Card.Body>
-
-              </Col>
-              <Col>
-                <div className='editdeletebuttons'>
-                  <Button variant='primary'>Edit </Button>
-                </div>
-              </Col>
-            </div>
+            <Profilecard />
             <br />
             <Createpost />
             <PostById />
-          </Card>
         </Col>}
     </div>
   )

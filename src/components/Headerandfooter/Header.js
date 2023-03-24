@@ -2,11 +2,11 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import image from '../assets/cover1.png';
+import image from '../../assets/cover1.png';
 import Button from '@mui/material/Button';
 import { useAuth0 } from '@auth0/auth0-react';
 
-export default function Header() {
+export default function Header(props) {
   const { logout, isAuthenticated } = useAuth0();
   return (
     <header className='header'>
@@ -25,11 +25,12 @@ export default function Header() {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/profile">Profile</Nav.Link>
+
             </Nav>
           </Navbar.Collapse>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            { isAuthenticated ? <Button onClick={() => logout()} variant="contained">Logout</Button>: "" }
+            {isAuthenticated ? <Button onClick={() => logout()} variant="contained">Logout</Button> : ""}
           </Navbar.Collapse>
         </Container>
       </Navbar>

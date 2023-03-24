@@ -3,12 +3,13 @@ import Home from './Home'
 import MainPage from './Main'
 import { useAuth0 } from '@auth0/auth0-react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
+import Header from './Headerandfooter/Header';
+import Footer from './Headerandfooter/Footer';
 import Profile from './Profile';
 
 function Switcher(props) {
     const { loginWithRedirect, isAuthenticated } = useAuth0();
+    
 
     const Wrapper = ({ children }) => (
         <>

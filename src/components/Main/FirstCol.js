@@ -1,7 +1,7 @@
 import React from 'react';
 import image from '../../assets/default-s.png';
 import ltucimage from '../../assets/LTUC-Logo.png';
-import CarouselInMain from '../CarouselInMain';
+import CarouselInMain from './CarouselInMain';
 
 
 function FirstCol() {
