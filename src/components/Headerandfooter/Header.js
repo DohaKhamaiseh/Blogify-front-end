@@ -1,39 +1,41 @@
-import React from 'react'
+import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import image from '../../assets/cover1.png';
+import Image from 'react-bootstrap/Image';
+import logo from '../assets/cover.png';
+import profile from '../assets/profile.png';
 import Button from '@mui/material/Button';
-import { useAuth0 } from '@auth0/auth0-react';
 
-export default function Header(props) {
-  const { logout, isAuthenticated } = useAuth0();
+export default function Header() {
+  const { isAuthenticated, logout } = useAuth0();
+
   return (
-    <header className='header'>
-      <Navbar className='header'>
-        <Container className='header'>
+    <header className='header'  >
+      <Navbar expand="lg">
+        <Container >
           <Navbar.Brand href="/">
-            <img
-              alt=""
-              src={image}
-              width="90"
-              height="30"
-              className="d-inline-block align-top"
-            />
+            <Image  src={logo} width="90" height="30" className="d-inline-block align-top" alt="Logo" />
+            <span className="ms-2">Blogify</span>
+            
           </Navbar.Brand>
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/profile">Profile</Nav.Link>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
+                <Nav style={{ marginLeft: '300px' }}>
+                 <Nav.Link href="/">Home</Nav.Link>
+                 <Nav.Link href="/profile">Profile</Nav.Link>
+                 <Nav.Link href="/about">About US</Nav.Link>
+                </Nav>
 
-            </Nav>
           </Navbar.Collapse>
-          <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            {isAuthenticated ? <Button onClick={() => logout()} variant="contained">Logout</Button> : ""}
+            { isAuthenticated ? <span className="me-3">Abdullah Abu Hamad</span> : "" }
+            { isAuthenticated ? <Image src={profile} width="30" height="30" roundedCircle className="mx-3" alt="Profile" /> : "" }
+            { isAuthenticated ? <Button onClick={() => logout()} variant="outline-light">Logout</Button> : "" }
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </header >
-  )
+    </header>
+  );
 }
