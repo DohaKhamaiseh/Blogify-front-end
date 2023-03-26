@@ -20,14 +20,14 @@ export default function Profile() {
   const addUsers = async () => {
     const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
     const data = axiosData.data;
-
-    setUserData(data[0].userid);
+    setUserData(data);
+    // setUserData(data[0].userid);
   }
   console.log(userData);
 
   useEffect((e) => {
     addUsers(e);
-  }, [userData])
+  }, [])
 
   return (
     <div>
@@ -37,7 +37,7 @@ export default function Profile() {
         </Col>
         <Col xs={6}>
           <br />
-          <Createpost />
+          <Createpost userData={userData}/>
           <PostById />
         </Col>
         <Col xs={2}>
