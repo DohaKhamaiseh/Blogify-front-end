@@ -8,9 +8,9 @@ import Footer from './Headerandfooter/Footer';
 import Profile from './Profile';
 
 function Switcher(props) {
-    const { loginWithRedirect, isAuthenticated } = useAuth0();
-    const {isLoading, error } = useAuth0();
-    
+    // const { loginWithRedirect, isAuthenticated } = useAuth0();
+    const { isLoading, error } = useAuth0();
+
 
     const Wrapper = ({ children }) => (
         <>
@@ -19,24 +19,25 @@ function Switcher(props) {
             <Footer />
         </>
     );
-    
+
     return (
         <main>
-            {!isAuthenticated && !isLoading && !error ? <MainPage loginWithRedirect={loginWithRedirect} /> :
-                (<Routes>
-                    <Route path="/" element={(
-                        <Wrapper>
-                            <Home />
-                        </Wrapper>
-                    )} />
-                    <Route path="/profile" element={(
-                        <Wrapper>
-                            <Profile />
-                        </Wrapper>
-                    )} />
-                </Routes>
-                )
-            }
+            {/* {!isAuthenticated && !isLoading && !error ? <MainPage loginWithRedirect={loginWithRedirect} /> : */}
+            {/* ( */}
+            <Routes>
+                <Route path="/" element={(
+                    <Wrapper>
+                        <Home />
+                    </Wrapper>
+                )} />
+                <Route path="/profile" element={(
+                    <Wrapper>
+                        <Profile />
+                    </Wrapper>
+                )} />
+            </Routes>
+            {/* ) */}
+            {/* } */}
         </main>
     )
 }

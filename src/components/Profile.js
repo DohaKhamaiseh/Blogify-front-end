@@ -22,13 +22,6 @@ export default function Profile() {
         <Col xs={2}>
         </Col>
       </Row>
-      :
-      <Col xs={12}>
-        <Profilecard />
-        <br />
-        <Createpost />
-        <PostById />
-      </Col>
     </div>
   )
 }
