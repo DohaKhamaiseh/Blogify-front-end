@@ -7,28 +7,31 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function Profilecard() {
+
     return (
-        <Card className='my-4' sx={{ maxWidth: 345 }}>
-            <CardMedia
-                component="img"
-                alt="green iguana"
-                height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Name
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    bio
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    date of birth
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">Edit</Button>
-            </CardActions>
-        </Card>
+        <>
+            <Card className='my-4' sx={{ maxWidth: 345 }}>
+                <CardMedia
+                    component="img"
+                    alt="green iguana"
+                    height="140"
+                    image="/static/images/cards/contemplative-reptile.jpg"
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                        Name
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        bio
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        date of birth
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Edit</Button>
+                </CardActions>
+            </Card>
+        </>
     )
 }
