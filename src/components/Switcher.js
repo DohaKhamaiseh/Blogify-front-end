@@ -9,6 +9,7 @@ import Profile from './Profile';
 
 function Switcher(props) {
     const { loginWithRedirect, isAuthenticated } = useAuth0();
+    const {isLoading, error } = useAuth0();
     
 
     const Wrapper = ({ children }) => (
@@ -18,10 +19,10 @@ function Switcher(props) {
             <Footer />
         </>
     );
-
+    
     return (
         <main>
-            {!isAuthenticated ? <MainPage loginWithRedirect={loginWithRedirect} /> :
+            {!isAuthenticated && !isLoading && !error ? <MainPage loginWithRedirect={loginWithRedirect} /> :
                 (<Routes>
                     <Route path="/" element={(
                         <Wrapper>

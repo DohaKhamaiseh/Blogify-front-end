@@ -4,8 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Image from 'react-bootstrap/Image';
-import logo from '../assets/cover.png';
-import profile from '../assets/profile.png';
+import logo from '../../assets/cover.png';
+import profile from '../../assets/profile.png';
 import Button from '@mui/material/Button';
 
 export default function Header() {
