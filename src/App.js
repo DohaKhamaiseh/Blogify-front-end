@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Switcher from './components/Switcher';
 
 export default function App() {
+
   return (
     <Switcher />
   );
