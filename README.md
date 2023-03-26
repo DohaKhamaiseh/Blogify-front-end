@@ -14,17 +14,10 @@ To begin working on the backend side of a project, follow these steps:
 * run these commands to install librarys :
 
   ````
-  npm install @mui/material @emotion/react @emotion/styled
-  npm install react-bootstrap bootstrap
-  npm install react-router-dom@6
-  npm install @auth0/auth0-react
-
-  incase you face issues with .env
-
-  npm install dotenv
+  npm install
   ````
 
-* Create a .env file in the root directory run this commands
+<!-- * Create a .env file in the root directory run this commands
 
   ````
   touch .env
@@ -35,7 +28,7 @@ To begin working on the backend side of a project, follow these steps:
   ````
   REACT_APP_AUTH0_DOMAIN=dev-bndosol1eh368202.eu.auth0.com
   REACT_APP_AUTH0_CLIENT_ID=9LkXcNOYLMjZKMrPAXbkFyn8KJtiakAo
-  ````
+  ```` -->
 
 * start the server
 
