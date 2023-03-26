@@ -10,7 +10,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Profile() {
 
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState([]);
 
   const user = {
     userFullName: "abd",
@@ -19,15 +19,15 @@ export default function Profile() {
 
   const addUsers = async () => {
     const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
-    const data = JSON.stringify(axiosData.data);
+    const data = axiosData.data;
 
-    setUserData(data);
+    setUserData(data[0].userid);
   }
   console.log(userData);
 
   useEffect((e) => {
     addUsers(e);
-  }, [])
+  }, [userData])
 
   return (
     <div>
