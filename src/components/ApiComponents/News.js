@@ -7,7 +7,7 @@ export default function News() {
   const [readMore, setReadMore] = useState(Array(5).fill(false));
 
   const sendReq = async () => {
-    const serverURL = 'https://blog-post-back-end.vercel.app/topHeadlines';
+    const serverURL = `${process.env.REACT_APP_Backend_Deploy_link}topHeadlines`;
     const response = await fetch(serverURL);
     const data = await response.json();
     setNewsArr(data);

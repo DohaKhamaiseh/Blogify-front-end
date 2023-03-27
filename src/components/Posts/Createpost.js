@@ -26,7 +26,7 @@ export default function Createpost(props) {
     const handleAIContent = async (e) => {
         try {
             e.preventDefault();
-            const axiosAIContent = await axios.get(`https://blog-post-back-end.vercel.app/generateByAi/?title=${title}`);
+            const axiosAIContent = await axios.get(`${process.env.REACT_APP_Backend_Deploy_link}generateByAi/?title=${title}`);
             setContent(axiosAIContent.data);
         }
         catch {
@@ -50,7 +50,7 @@ export default function Createpost(props) {
                 content: content,
                 imageURL: image
             }
-            await axios.post('https://blog-post-back-end.vercel.app/addPost', dataToSend);
+            await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addPost`, dataToSend);
         }
         catch (error) {
 

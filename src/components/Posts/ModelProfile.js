@@ -3,24 +3,16 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+
 function ModalProfile(props) {
+
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
   const [img, setImg] = useState('');
   const [bio, setBio] = useState('');
-  
-  function handleSave() {
-  
-
-    
-
-  }
 
   const handleNameChange = (event) => {
-    //console.log(event.target.value) ;
-   
     setName(event.target.value);
-    
   };
 
   const handleDateChange = (event) => {
@@ -35,7 +27,6 @@ function ModalProfile(props) {
     setBio(event.target.value);
   };
 
-  let newUser = {};
   const updatePro = async (e) => {
     e.preventDefault();
     let obj = {
@@ -45,25 +36,13 @@ function ModalProfile(props) {
       bio: bio
     }
 
-    
-
-    console.log(obj);
-    const serverURl = `${process.env.REACT_APP_Backend_Deploy_link}/updateprofil/${props.id}`
+    const serverURl = `${process.env.REACT_APP_Backend_Deploy_link}updateprofil/${props.id}`
     const axiosRes = await axios.put(serverURl, obj);
-    newUser = axiosRes.data;
-    console.log(newUser);
-    //close the update modal
-    
-    //update the old UserInfo
+    const newUser = axiosRes.data;
     props.setupdateUser(newUser);
     props.handleClose();
-
-
   }
-  // useEffect(() => {
-  //   console.log(obj);
-  // }, [obj]);
-  
+
   return (
 
     <Modal show={props.showFlag}>
@@ -75,13 +54,13 @@ function ModalProfile(props) {
         <Form onSubmit={updatePro}>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Name" name="Name" defaultValue={newUser.userFullName} onChange={handleNameChange} />
+            <Form.Control type="text" placeholder="Name" name="Name" defaultValue={props.name} onChange={handleNameChange} />
             <Form.Label>image URl</Form.Label>
-            <Form.Control type="text" placeholder="Image" name="Img" defaultValue={newUser.imageURL} onChange={handleImgChange} />
+            <Form.Control type="text" placeholder="Image" name="Img" defaultValue={props.pic} onChange={handleImgChange} />
             <Form.Label>Bio</Form.Label>
-            <Form.Control type="text" placeholder="BIO" name="Bio" defaultValue={newUser.bio} onChange={handleBioChange} />
+            <Form.Control type="text" placeholder="BIO" name="Bio" defaultValue={props.bio} onChange={handleBioChange} />
             <Form.Label>Birth date</Form.Label>
-            <input id="startDate" name="Date" defaultValue={newUser.dateOfBirth} onChange={handleDateChange} className="form-control" type="date" data-date="" data-date-format="DD MMMM YYYY" />
+            <input id="startDate" name="Date" defaultValue={props.dob} onChange={handleDateChange} className="form-control" type="date" data-date="" data-date-format="DD MMMM YYYY" />
           </Form.Group>
           <Button variant="primary" type="submit">
             Save changes
