@@ -25,29 +25,31 @@ export default function Profile() {
   const addUsers = async () => {
     const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
     const data = axiosData.data;
+    //console.log(data[0].userid);
     setUserData(data);
     setId(data[0].userid);
     setpic(data[0].imageurl);
     setbio(data[0].bio);
     setdob(data[0].dateofbirth);
     setname(data[0].userfullname);
-    // setUserData(data[0].userid);
+    setUserData(data[0].userid);
   }
-
+  //console.log(id);
   useEffect(() => {
     addUsers();
-  }, [])
+  }, [userData])
 
   return (
     <div>
       <Row className='mx-4'>
         <Col xs={3}>
-          <Profilecard pic={pic} bio={bio} dob={dob} name={name}/>
+        
+          <Profilecard   pic={pic} bio={bio} dob={dob} name={name} id={id} setUserData={setUserData}/>
         </Col>
         <Col xs={6}>
           <br />
-          <Createpost id={id}/>
-          <UserPost id={id}/>
+          <Createpost id={id} />
+          <UserPost id={id} />
         </Col>
         <Col xs={2}>
         </Col>
