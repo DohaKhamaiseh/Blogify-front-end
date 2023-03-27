@@ -6,6 +6,8 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './Headerandfooter/Header';
 import Footer from './Headerandfooter/Footer';
 import Profile from './Profile';
+import PostByID from './Posts/PostByID';
+
 
 function Switcher(props) {
     // const { loginWithRedirect, isAuthenticated } = useAuth0();
@@ -38,6 +40,11 @@ function Switcher(props) {
                 <Route path="/about" element={(
                     <Wrapper>
                         <Profile />
+                    </Wrapper>
+                )} />
+                <Route path="/postinfo" element={(
+                    <Wrapper>
+                        <PostByID />
                     </Wrapper>
                 )} />
             </Routes>
