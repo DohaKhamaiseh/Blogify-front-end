@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './Headerandfooter/Header';
 import Footer from './Headerandfooter/Footer';
 import Profile from './Profile';
+import About from '../components/AboutUs/About';
 
 function Switcher(props) {
     // const { loginWithRedirect, isAuthenticated } = useAuth0();
@@ -35,6 +36,7 @@ function Switcher(props) {
                         <Profile />
                     </Wrapper>
                 )} />
+
                 <Route path="/about" element={(
                     <Wrapper>
                         <Profile />
