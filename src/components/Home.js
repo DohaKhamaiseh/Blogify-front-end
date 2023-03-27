@@ -20,13 +20,6 @@ export default function Home() {
   }
 
 
-  const addUsers = async () => {
-    const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
-    const data = axiosData.data;
-
-    setUserData(data[0].userid);
-  }
-  console.log(userData);
 
   useEffect((e) => {
     addUsers(e);
@@ -40,9 +33,7 @@ export default function Home() {
     // setUserData(data[0].userid);
   }
 
-  useEffect((e) => {
-    addUsers(e);
-  }, [])
+
   
   return (
     <>

@@ -23,7 +23,7 @@ export default function Footer() {
           </Col>
         </Row>
         <hr />
-        <p className="text-center">&copy; {new Date().getFullYear()} Company Name. All rights reserved.</p>
+        <p className="text-center">&copy; {new Date().getFullYear()} Blogify. All rights reserved.</p>
       </Container>
     </footer>
   );
