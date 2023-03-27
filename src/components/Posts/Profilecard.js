@@ -8,44 +8,43 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ModalProfile from '../Posts/ModelProfile';
 
-export default function Profilecard() {
-  
+export default function Profilecard(props) {
+
   const user = {
     name: "Name",
     email: "user42@example.com"
   };
 
- 
-  const [showFlag,setShowFlag] = useState(false);
-//   const [clickedUser,setClickedMovie]= useState({});
-  const handleShow = ()=>{
+  const [showFlag, setShowFlag] = useState(false);
+  //   const [clickedUser,setClickedMovie]= useState({});
+  const handleShow = () => {
     //   setClickedMovie(props.user);
 
-      setShowFlag(true);
+    setShowFlag(true);
 
   }
-  const handleClose = ()=>{
-      setShowFlag(false);
+  const handleClose = () => {
+    setShowFlag(false);
 
   }
   return (
     <div>
       <Card className='my-4' sx={{ maxWidth: 345 }}>
-        <CardMedia
+        <img
           component='img'
           alt='green iguana'
           height='140'
-          image='/static/images/cards/contemplative-reptile.jpg'
+          src={props.pic}
         />
         <CardContent>
           <Typography gutterBottom variant='h5' component='div'>
-            {user.name}
+            {props.name}
           </Typography>
           <Typography variant='body2' color='text.secondary'>
-            bio
+            Bio: {props.bio}
           </Typography>
           <Typography variant='body2' color='text.secondary'>
-            date of birth
+            Date of birth: {props.dob}
           </Typography>
         </CardContent>
         <CardActions>
@@ -54,7 +53,7 @@ export default function Profilecard() {
           </Button>
         </CardActions>
       </Card>
-      <ModalProfile user={user} showFlag={showFlag} handleClose={handleClose}/>
+      <ModalProfile pic={props.pic} bio={props.bio} dob={props.dob} name={props.name} showFlag={showFlag} handleClose={handleClose} />
     </div>
   );
 }

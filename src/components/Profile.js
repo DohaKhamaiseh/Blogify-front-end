@@ -10,6 +10,11 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Profile() {
 
+  const [id, setId] = useState('');
+  const [pic, setpic] = useState('');
+  const [bio, setbio] = useState('');
+  const [dob, setdob] = useState('');
+  const [name, setname] = useState('');
   const [userData, setUserData] = useState([]);
 
   const user = {
@@ -21,23 +26,27 @@ export default function Profile() {
     const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
     const data = axiosData.data;
     setUserData(data);
+    setId(data[0].userid);
+    setpic(data[0].imageurl);
+    setbio(data[0].bio);
+    setdob(data[0].dateofbirth);
+    setname(data[0].userfullname);
     // setUserData(data[0].userid);
   }
-  console.log(userData);
 
-  useEffect((e) => {
-    addUsers(e);
+  useEffect(() => {
+    addUsers();
   }, [])
 
   return (
     <div>
       <Row className='mx-4'>
         <Col xs={3}>
-          <Profilecard />
+          <Profilecard pic={pic} bio={bio} dob={dob} name={name}/>
         </Col>
         <Col xs={6}>
           <br />
-          <Createpost userData={userData}/>
+          <Createpost id={id}/>
           <PostById />
         </Col>
         <Col xs={2}>

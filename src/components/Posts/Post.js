@@ -15,23 +15,24 @@ export default function Post() {
         const data = postsData.data;
         console.log(data);
         setAllPostsData(data);
-
     }
 
     useEffect(() => {
         getAllPosts();
-        console.log(allPostsData);
     }, [])
 
     return (
         <>
             {allPostsData.map((e) => {
                 return (
-                    <Card className='my-2'>
+                    <Card key={e.postid} className='my-2'>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                {e.userfullname}
-                            </Typography>
+                            <div className='displayflex'>
+                                <img className='imageofuserinpost' src={e.userimageurl} />
+                                <Typography gutterBottom variant="h5" component="div">
+                                    {e.userfullname}
+                                </Typography>
+                            </div>
                             <Typography gutterBottom variant="h6" component="div">
                                 {e.title}
                             </Typography>
@@ -40,13 +41,14 @@ export default function Post() {
                             </Typography>
                         </CardContent>
                         <img
+                            className='mx-2'
                             src={e.imageurl}
                             title="Post Image"
                             alt=''
                         />
                         <CardActions>
                             <Button size="small">Like</Button>
-                            <Button size="small">See More</Button>
+                            <Button href={`/postById/${e.postid}`} size="small">See More</Button>
                         </CardActions>
                     </Card>
                 )

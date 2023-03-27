@@ -10,7 +10,7 @@ import Profile from './Profile';
 function Switcher(props) {
     // const { loginWithRedirect, isAuthenticated } = useAuth0();
     // const { isLoading, error } = useAuth0();
-
+    
 
     const Wrapper = ({ children }) => (
         <>

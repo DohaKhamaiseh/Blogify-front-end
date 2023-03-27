@@ -19,6 +19,11 @@
   background-color: #12233c;
 }
 
+.imageofuserinpost {
+  width: 40px;
+  margin-right: 10px;
+}
+
 .scrolledinpage {
   position: fixed;
   top: 0;
