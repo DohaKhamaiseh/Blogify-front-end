@@ -19,7 +19,7 @@ export default function Post(props) {
 
     useEffect(() => {
         getAllPosts();
-    }, [allPostsData])gi
+    }, [allPostsData])
 
     return (
         <>
