@@ -30,7 +30,6 @@ export default function Createpost(props) {
             setContent(axiosAIContent.data);
         }
         catch {
-
         }
     }
 
