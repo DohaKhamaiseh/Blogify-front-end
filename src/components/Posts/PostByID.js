@@ -81,25 +81,23 @@ export default function PostByID() {
 
     const handleEditPost = async (data) => {
         const obj = data;
-        if(obj.title ==='')
-        {
-            obj.title =post.title;
+        if (obj.title === '') {
+            obj.title = post.title;
         }
-        if(obj.imageURL ==='')
-        {
-            obj.imageURL =post.imageurl;
+        if (obj.imageURL === '') {
+            obj.imageURL = post.imageurl;
         }
-        if(obj.content ==='')
-        {
-            obj.content =post.content;
+        if (obj.content === '') {
+            obj.content = post.content;
         }
         console.log(obj.imageURL);
         try {
             await axios.put(`${process.env.REACT_APP_Backend_Deploy_link}updatepost/${postId}`, {
                 "title":obj.title ,
                 "content":  obj.content,
+
                 "imageURL": obj.imageURL
-              });
+            });
             getPost();
         } catch (error) {
             console.error('Error updating post:', error);
@@ -235,7 +233,7 @@ export default function PostByID() {
                         </Card>
                     ))}
                     <ModelComment key={CommentSelected.commentid} comment={CommentSelected} showFlag={showCommentFlag} handleClose={handleCeommentClose} handleEditComment={handleEditComment} />
-                    <ModelPost  key={postId} post={post} showFlag={showPostFlag} handleClose={handlePostClose} handleEditPost={handleEditPost} />
+                    <ModelPost key={postId} post={post} showFlag={showPostFlag} handleClose={handlePostClose} handleEditPost={handleEditPost} />
                 </Grid>
             </Grid>
         </Box>

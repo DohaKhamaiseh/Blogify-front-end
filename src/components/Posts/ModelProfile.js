@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
+
 function ModalProfile(props) {
 
   const [name, setName] = useState('');
@@ -35,6 +36,7 @@ function ModalProfile(props) {
       imageURL: img,
       bio: bio
     }
+
 
     const serverURl = `${process.env.REACT_APP_Backend_Deploy_link}updateprofil/${props.id}`
     const axiosRes = await axios.put(serverURl, obj);

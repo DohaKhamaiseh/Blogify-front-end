@@ -47,7 +47,7 @@ export default function Home() {
         <Col xs={6}>
 
           <Createpost id={id} />
-          <Post returnPostData={returnPostData} />
+          <Post id={id}/>
         </Col>
       </Row>
     </>
