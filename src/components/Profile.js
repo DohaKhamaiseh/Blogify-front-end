@@ -23,7 +23,7 @@ export default function Profile() {
   }
 
   const addUsers = async () => {
-    const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
+    const axiosData = await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addUsers`, user);
     const data = axiosData.data;
     //console.log(data[0].userid);
     setUserData(data);
@@ -32,9 +32,8 @@ export default function Profile() {
     setbio(data[0].bio);
     setdob(data[0].dateofbirth);
     setname(data[0].userfullname);
-    setUserData(data[0].userid);
   }
-  //console.log(id);
+
   useEffect(() => {
     addUsers();
   }, [userData])

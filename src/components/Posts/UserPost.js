@@ -8,7 +8,7 @@ export default function UserPost(props) {
     const Userid = 3;
 
     const getAllPosts = async () => {
-        const postsData = await axios.get(`https://blog-post-back-end.vercel.app/getAllPosts`)
+        const postsData = await axios.get(`${process.env.REACT_APP_Backend_Deploy_link}getAllPosts`)
         const data = postsData.data;
         const filteredPosts = data.filter(post => post.userid === Userid);
         setAllPostsData(filteredPosts);

@@ -10,7 +10,7 @@ export default function Post() {
     const [allPostsData, setAllPostsData] = useState([]);
 
     const getAllPosts = async () => {
-        const postsData = await axios.get('https://blog-post-back-end.vercel.app/getAllPosts')
+        const postsData = await axios.get(`${process.env.REACT_APP_Backend_Deploy_link}getAllPosts`)
         const data = postsData.data;
         setAllPostsData(data);
     }

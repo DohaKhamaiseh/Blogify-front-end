@@ -32,13 +32,13 @@ export default function PostByID() {
     const [showCommentFlag, setshowCommentFlag] = useState(false);
     const [showPostFlag, setshowPostFlag] = useState(false);
     const getPost = async () => {
-        const axiosData = await axios.get(`https://blog-post-back-end.vercel.app/getPostById/${postId}`);
+        const axiosData = await axios.get(`${process.env.REACT_APP_Backend_Deploy_link}getPostById/${postId}`);
         const data = axiosData.data;
         setPost(data[0]);
     }
 
     const getComments = async () => {
-        const axiosData = await axios.get(`https://blog-post-back-end.vercel.app/getAllComment/${postId}`);
+        const axiosData = await axios.get(`${process.env.REACT_APP_Backend_Deploy_link}getAllComment/${postId}`);
         const data = axiosData.data;
         setComments(data);
     }
@@ -50,7 +50,7 @@ export default function PostByID() {
 
     const handleAddComment = async () => {
         if (newComment !== '') {
-            await axios.post(`https://blog-post-back-end.vercel.app/saveComment`, {
+            await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}saveComment`, {
                 postId: postId,
                 userId: userId,
                 Content: newComment,
@@ -62,12 +62,12 @@ export default function PostByID() {
 
 
     const handleDeleteComment = async (commentId) => {
-        await axios.delete(`https://blog-post-back-end.vercel.app/deleteComment/${commentId}`);
+        await axios.delete(`${process.env.REACT_APP_Backend_Deploy_link}deleteComment/${commentId}`);
         setComments(comments.filter((comment) => comment.commentid !== commentId));
     };
 
     const handleEditComment = async (commentId, newContent) => {
-        await axios.put(`https://blog-post-back-end.vercel.app/updateComment/${commentId}`, {
+        await axios.put(`${process.env.REACT_APP_Backend_Deploy_link}updateComment/${commentId}`, {
             Content: newContent
         });
         getComments();
@@ -75,7 +75,7 @@ export default function PostByID() {
     };
 
     const handleDeletePost = async () => {
-        await axios.delete(`https://blog-post-back-end.vercel.app/deletepost/${postId}`);
+        await axios.delete(`${process.env.REACT_APP_Backend_Deploy_link}deletepost/${postId}`);
         window.location.href = "/"; // redirect to home page after deleting the post
     };
 
@@ -92,9 +92,10 @@ export default function PostByID() {
         }
         console.log(obj.imageURL);
         try {
-            await axios.put(`https://blog-post-back-end.vercel.app/updatepost/${postId}`, {
-                "title": obj.title,
-                "content": obj.content,
+            await axios.put(`${process.env.REACT_APP_Backend_Deploy_link}updatepost/${postId}`, {
+                "title":obj.title ,
+                "content":  obj.content,
+
                 "imageURL": obj.imageURL
             });
             getPost();

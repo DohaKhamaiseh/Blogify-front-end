@@ -21,7 +21,7 @@ export default function Home() {
   }
 
   const addUsers = async () => {
-    const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
+    const axiosData = await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addUsers`, user);
     const data = axiosData.data;
     setId(data[0].userid)
   }
