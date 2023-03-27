@@ -1,7 +1,7 @@
 import React from 'react'
 import Home from './Home'
-import MainPage from './Main'
-import { useAuth0 } from '@auth0/auth0-react';
+// import MainPage from './Main'
+// import { useAuth0 } from '@auth0/auth0-react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './Headerandfooter/Header';
 import Footer from './Headerandfooter/Footer';
@@ -10,8 +10,8 @@ import About from '../components/AboutUs/About';
 
 function Switcher(props) {
     // const { loginWithRedirect, isAuthenticated } = useAuth0();
-    const { isLoading, error } = useAuth0();
-
+    // const { isLoading, error } = useAuth0();
+    
 
     const Wrapper = ({ children }) => (
         <>
@@ -36,14 +36,14 @@ function Switcher(props) {
                         <Profile />
                     </Wrapper>
                 )} />
-                 <Route path="/about" element={(
+
+                <Route path="/about" element={(
                     <Wrapper>
-                        <About />
+                        <Profile />
                     </Wrapper>
                 )} />
             </Routes>
-            {/* ) */}
-            {/* } */}
+
         </main>
     )
 }

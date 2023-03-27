@@ -11,7 +11,8 @@ export default function Footer() {
         <Row className="justify-content-between align-items-center">
           <Col sm={6}>
             <h5>Blogify</h5>
-            <p>We are a company that specializes in creating high-quality websites and web applications for businesses and individuals.</p>
+            <p>Blogify is a social media platform for sharing posts, engaging in discussions,
+               and fostering a supportive community for self-expression and creativity.</p>
           </Col>
           <Col sm={3}>
             <h5>Sources</h5>
