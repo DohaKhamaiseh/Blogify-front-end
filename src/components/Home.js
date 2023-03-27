@@ -9,8 +9,8 @@ import axios from 'axios';
 
 export default function Home() {
 
-
   // const { user, isAuthenticated } = useAuth0();
+  
   const [postsData, setPostsData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [id, setId] = useState('');
@@ -24,7 +24,6 @@ export default function Home() {
     const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
     const data = axiosData.data;
     setId(data[0].userid)
-    // setUserData(data[0].userid);
   }
 
   const returnPostData = (arr) => {

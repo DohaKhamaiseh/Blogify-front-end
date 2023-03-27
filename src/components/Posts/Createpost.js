@@ -10,8 +10,8 @@ import axios from 'axios';
 
 export default function Createpost(props) {
 
-    const [content, setContent] = useState();
-    const [title, setTitle] = useState();
+    const [content, setContent] = useState('');
+    const [title, setTitle] = useState('');
     const [image, setImage] = useState();
     const [show, setShow] = useState(false);
 
@@ -19,12 +19,23 @@ export default function Createpost(props) {
 
     const useridgetter = props.id;
 
-    function handleContentChange(event) {
-        setContent(event.target.value);
-    }
-
     function handleTitleChange(event) {
         setTitle(event.target.value);
+    }
+
+    const handleAIContent = async (e) => {
+        try {
+            e.preventDefault();
+            const axiosAIContent = await axios.get(`https://blog-post-back-end.vercel.app/generateByAi/?title=${title}`);
+            setContent(axiosAIContent.data);
+        }
+        catch {
+
+        }
+    }
+
+    function handleContentChange(event) {
+        setContent(event.target.value);
     }
 
     function handleImageChange(event) {
@@ -47,8 +58,11 @@ export default function Createpost(props) {
         }
     }
 
+
     useEffect(() => {
-    }, [])
+        console.log(title);
+        console.log(content);
+    }, [title, content, image])
 
     return (
         <>
@@ -64,12 +78,13 @@ export default function Createpost(props) {
                                 placeholder="Leave a comment here"
                             />
                         </FloatingLabel>
-                        <FloatingLabel className='my-2' controlId="floatingTextarea2" label="Create a post">
+                        <FloatingLabel className='my-2' controlId="floatingTextarea2" label="">
                             <Form.Control
                                 onChange={handleContentChange}
                                 name='content'
                                 as="textarea"
                                 placeholder="Leave a comment here"
+                                defaultValue={content}
                                 style={{ height: '100px' }}
                             />
                         </FloatingLabel>
@@ -81,8 +96,8 @@ export default function Createpost(props) {
                             />
                         </FloatingLabel >
                         <div className='mx-2 displayflex' >
-                            <Button className='mx-2' id='submitpostbycontent' type='submit' variant="secondary" >Post</Button>
-                            <Button className='mx-2' id='submitpostbyai' type='submit' variant="secondary" >Use AI</Button>
+                            <Button className='mx-2' value='submitpostbycontent' type='submit' variant="secondary" >Post</Button>
+                            <Button className='mx-2' onClick={handleAIContent} value='submitpostbyai' type='submit' variant="secondary" >Use AI</Button>
                             <Button ref={target} onClick={() => setShow(!show)}>
                                 ChatGPT Tooltip
                             </Button>
