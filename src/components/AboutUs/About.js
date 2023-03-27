@@ -16,7 +16,7 @@ function About() {
                 <article>
                     <h1>About Us</h1>
                     <blockquote>
-                    Welcom to our webapplication! A Blogify webapplication where people 
+                    Welcom to our web application! A Blogify web application where people 
                 can create and publish content on various topics, sharing their ideas, opinions, or experiences
                  with a wider audience . Our team is committed to providing an exceptional 
                  user experience and we hope that you'll find our website useful and an easy-to-use.

@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF,faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import './TeamMember.css';
 
 function TeamMember(props) {
@@ -24,8 +24,8 @@ function TeamMember(props) {
                   <a href={props.member.FaceLink}>
                     <FontAwesomeIcon icon={faFacebookF} />
                   </a>
-                  <a href={props.member.InstLink}>
-                    <FontAwesomeIcon icon={faInstagram} />
+                  <a href={props.member.GhLink}>
+                  <FontAwesomeIcon icon={faGithub} />
                   </a>
 
                   <a href={props.member.InLink}>
