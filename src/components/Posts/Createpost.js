@@ -81,8 +81,8 @@ export default function Createpost(props) {
                             />
                         </FloatingLabel >
                         <div className='mx-2 displayflex' >
-                            <Button className='mx-2' type='submit' variant="secondary" >Post</Button>
-                            {/* <Button className='mx-2' type='submit' variant="secondary" >Use AI</Button> */}
+                            <Button className='mx-2' id='submitpostbycontent' type='submit' variant="secondary" >Post</Button>
+                            <Button className='mx-2' id='submitpostbyai' type='submit' variant="secondary" >Use AI</Button>
                             <Button ref={target} onClick={() => setShow(!show)}>
                                 ChatGPT Tooltip
                             </Button>

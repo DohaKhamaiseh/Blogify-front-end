@@ -11,6 +11,7 @@ export default function Home() {
 
 
   // const { user, isAuthenticated } = useAuth0();
+  const [postsData, setPostsData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [id, setId] = useState('');
 
@@ -19,13 +20,6 @@ export default function Home() {
     email: "test65@example.com"
   }
 
-
-
-  useEffect((e) => {
-    addUsers(e);
-  }, [userData])
-
-
   const addUsers = async () => {
     const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
     const data = axiosData.data;
@@ -33,8 +27,16 @@ export default function Home() {
     // setUserData(data[0].userid);
   }
 
+  const returnPostData = (arr) => {
+    setPostsData(arr);
+  }
 
-  
+  useEffect((e) => {
+
+    addUsers(e);
+
+  }, [userData, postsData])
+
   return (
     <>
       <Row className='mx-4 my-4'>
@@ -46,7 +48,7 @@ export default function Home() {
         <Col xs={6}>
 
           <Createpost id={id} />
-          <Post />
+          <Post returnPostData={returnPostData} />
         </Col>
       </Row>
     </>
