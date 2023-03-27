@@ -6,16 +6,17 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
-export default function Post(props) {
+export default function UserPost(props) {
 
     const [allPostsData, setAllPostsData] = useState([]);
-    const postid = props.id;
+    const Userid = props.id;
+    console.log(Userid);
 
     const getAllPosts = async () => {
-        const postsData = await axios.get(`https://blog-post-back-end.vercel.app/getUserPosts/${postid}`)
+        const postsData = await axios.get(`https://blog-post-back-end.vercel.app/getAllPosts`)
         const data = postsData.data;
-        console.log(data);
-        setAllPostsData(data);
+        const filteredPosts = data.filter(post => post.userid === Userid);
+        setAllPostsData(filteredPosts);
     }
 
     useEffect(() => {

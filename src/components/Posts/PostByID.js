@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
 import axios from 'axios';
 import {
     Box,
@@ -20,17 +22,15 @@ import ModelPost from '../Posts/ModelPost';
 
 export default function PostByID() {
 
-    const userId = 1;
-    const postId = 1;
+    const userId = 3;
+    const ParamsObj = useParams();
+    const postId = ParamsObj.id;
     const [post, setPost] = useState([]);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [CommentSelected, setCommentSelected] = useState([]);
     const [showCommentFlag, setshowCommentFlag] = useState(false);
     const [showPostFlag, setshowPostFlag] = useState(false);
-
-
-
     const getPost = async () => {
         const axiosData = await axios.get(`https://blog-post-back-end.vercel.app/getPostById/${postId}`);
         const data = axiosData.data;
