@@ -9,12 +9,29 @@ import axios from 'axios';
 
 export default function Home() {
 
-  const [id, setId] = useState('');
+
   // const { user, isAuthenticated } = useAuth0();
+  const [userData, setUserData] = useState([]);
+  const [id, setId] = useState('');
+
   const user = {
     userFullName: "abd",
     email: "test65@example.com"
   }
+
+
+  const addUsers = async () => {
+    const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
+    const data = axiosData.data;
+
+    setUserData(data[0].userid);
+  }
+  console.log(userData);
+
+  useEffect((e) => {
+    addUsers(e);
+  }, [userData])
+
 
   const addUsers = async () => {
     const axiosData = await axios.post('https://blog-post-back-end.vercel.app/addUsers', user);
@@ -36,6 +53,7 @@ export default function Home() {
           </div>
         </Col>
         <Col xs={6}>
+
           <Createpost id={id} />
           <Post />
         </Col>

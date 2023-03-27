@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './Headerandfooter/Header';
 import Footer from './Headerandfooter/Footer';
 import Profile from './Profile';
+import PostByID from './Posts/PostByID';
 import About from '../components/AboutUs/About';
 
 function Switcher(props) {
@@ -40,6 +41,11 @@ function Switcher(props) {
                 <Route path="/about" element={(
                     <Wrapper>
                         <Profile />
+                    </Wrapper>
+                )} />
+                <Route path="/postinfo" element={(
+                    <Wrapper>
+                        <PostByID />
                     </Wrapper>
                 )} />
             </Routes>

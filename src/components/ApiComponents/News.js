@@ -6,7 +6,7 @@ export default function News() {
 
     const sendReq = async () => {
         //console.log(process.env.Deploy_URL);
-        const serverURL = `http://localhost:4000/topHeadlines`;
+        const serverURL = `https://blog-post-back-end.vercel.app/topHeadlines`;
         const response = await fetch(serverURL);
         //console.log(response);
         const data = await response.json();
