@@ -7,12 +7,12 @@ import Header from './Headerandfooter/Header';
 import Footer from './Headerandfooter/Footer';
 import Profile from './Profile';
 import PostByID from './Posts/PostByID';
-
+import About from '../components/AboutUs/About';
 
 function Switcher(props) {
     // const { loginWithRedirect, isAuthenticated } = useAuth0();
     // const { isLoading, error } = useAuth0();
-
+    
 
     const Wrapper = ({ children }) => (
         <>
@@ -37,6 +37,7 @@ function Switcher(props) {
                         <Profile />
                     </Wrapper>
                 )} />
+
                 <Route path="/about" element={(
                     <Wrapper>
                         <Profile />
