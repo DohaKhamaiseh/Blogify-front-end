@@ -6,20 +6,20 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
-export default function Post() {
+export default function Post(props) {
 
     const [allPostsData, setAllPostsData] = useState([]);
 
     const getAllPosts = async () => {
         const postsData = await axios.get('https://blog-post-back-end.vercel.app/getAllPosts')
         const data = postsData.data;
-        console.log(data);
+        props.returnPostData(data);
         setAllPostsData(data);
     }
 
     useEffect(() => {
         getAllPosts();
-    }, [])
+    }, [allPostsData])
 
     return (
         <>

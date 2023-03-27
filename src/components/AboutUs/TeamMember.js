@@ -1,5 +1,6 @@
-import Card from 'react-bootstrap/Card';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { faFacebookF,faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import './TeamMember.css';
 
@@ -30,8 +31,8 @@ function TeamMember(props) {
             </div>
           </div>
       
-
-  )
+ )
 }
+
 export default TeamMember;
 
