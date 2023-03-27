@@ -3,45 +3,27 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ModalProfile from '../Posts/ModelProfile';
-import axios from 'axios';
 
 export default function Profilecard(props) {
+
   const [updateUser, setupdateUser] = useState([]);
- // const id = props.id;
-  //console.log(props.id);
-  //const [updateUserInfo, setupdateUserInfo] = useState([]);
-  const user = {
-    name: "Name",
-    email: "user42@example.com"
-  };
 
   const [showFlag, setShowFlag] = useState(false);
-  //const [clickedUser,setClickedUser]= useState({});
 
   const handleShow = () => {
-    // setClickedUser(updateUser);
-
     setShowFlag(true);
-
   }
   const handleClose = () => {
     setShowFlag(false);
 
   }
-  const takeNewArrFromChild = (user) => {
-    // console.log("parent Comp",arr);
-    // props.takeNewArr(arr);
-    setupdateUser(user);
-  }
 
   useEffect(() => {
    
   }, [updateUser]);
-  props.setUserData(updateUser);
 
   return (
     <div>
@@ -69,7 +51,7 @@ export default function Profilecard(props) {
           </Button>
         </CardActions>
       </Card>
-      <ModalProfile  id={props.id} takeNewArrFromChild={takeNewArrFromChild} showFlag={showFlag} handleClose={handleClose} setupdateUser={setupdateUser}/>
+      <ModalProfile pic={props.pic} bio={props.bio} dob={props.dob} name={props.name} id={props.id} showFlag={showFlag} handleClose={handleClose} setupdateUser={setupdateUser}/>
     </div>
   );
 
