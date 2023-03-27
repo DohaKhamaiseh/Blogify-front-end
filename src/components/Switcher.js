@@ -40,10 +40,10 @@ function Switcher(props) {
 
                 <Route path="/about" element={(
                     <Wrapper>
-                        <Profile />
+                        <About />
                     </Wrapper>
                 )} />
-                <Route path="/postinfo" element={(
+                <Route path="/postinfo/:id" element={(
                     <Wrapper>
                         <PostByID />
                     </Wrapper>

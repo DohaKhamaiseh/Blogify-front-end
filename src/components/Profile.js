@@ -3,7 +3,7 @@ import Createpost from './Posts/Createpost';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../profile.css'
-import PostById from './Posts/PostByID';
+import UserPost from './Posts/UserPost';
 import Profilecard from './Posts/Profilecard'
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -47,7 +47,7 @@ export default function Profile() {
         <Col xs={6}>
           <br />
           <Createpost id={id}/>
-          <PostById />
+          <UserPost id={id}/>
         </Col>
         <Col xs={2}>
         </Col>
