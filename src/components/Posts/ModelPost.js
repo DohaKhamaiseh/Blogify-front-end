@@ -52,9 +52,9 @@ function ModalProfile(props) {
                         <Form.Label>Image URl</Form.Label>
                         <Form.Control name="image" type="text" defaultValue={props.post.imageurl} onChange={handleImageURLChange} />
                     </Form.Group>
-                    <Form.Group className="mb-3" >
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Content</Form.Label>
-                        <Form.Control name="content" type="text" defaultValue={props.post.content} onChange={handleContentChange} />
+                        <Form.Control as="textarea" rows={9} name="content" type="text" defaultValue={props.post.content} onChange={handleContentChange} />
                     </Form.Group>
                 </Form>
 

@@ -3,24 +3,21 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+
+
 function ModalProfile(props) {
+
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
   const [img, setImg] = useState('');
   const [bio, setBio] = useState('');
-  
-  function handleSave() {
-  
 
-    
+  function handleSave() {
 
   }
 
   const handleNameChange = (event) => {
-    //console.log(event.target.value) ;
-   
     setName(event.target.value);
-    
   };
 
   const handleDateChange = (event) => {
@@ -45,7 +42,7 @@ function ModalProfile(props) {
       bio: bio
     }
 
-    
+
 
     console.log(obj);
     const serverURl = `${process.env.REACT_APP_Backend_Deploy_link}/updateprofil/${props.id}`
@@ -53,7 +50,7 @@ function ModalProfile(props) {
     newUser = axiosRes.data;
     console.log(newUser);
     //close the update modal
-    
+
     //update the old UserInfo
     props.setupdateUser(newUser);
     props.handleClose();
@@ -63,7 +60,7 @@ function ModalProfile(props) {
   // useEffect(() => {
   //   console.log(obj);
   // }, [obj]);
-  
+
   return (
 
     <Modal show={props.showFlag}>
