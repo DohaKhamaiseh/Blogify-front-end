@@ -1,20 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Poppins:ital,wght@0,300;1,300;1,600&display=swap');
-
-.imageinaboutus {
-    width: 250px;
+.every {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
 }
 
-.teamcard {
-    border-radius: 15px;
-    background-color: gray;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 500px;
-    width: 400px;
+.wrapper {
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/blog.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.teamcard a {
-    margin: 0px 10px;
+.test {
+    padding: 30px 100px;
+}
+
+article {
+    padding: 30px;
+    padding-right: 20px;
+}
+
+article h1 {
+    font-family: Georgia;
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 100px;
+
+}
+
+article h1:after {
+    content: "";
+    height: 5px;
+    width: 277px;
+    background-color: #fff;
+    display: block;
+    margin: auto;
+
+}
+
+blockquote {
+    font-family: "Times New Roman";
+    font-size: 22px;
+    letter-spacing: 1px;
+    line-height: 40px;
+
 }

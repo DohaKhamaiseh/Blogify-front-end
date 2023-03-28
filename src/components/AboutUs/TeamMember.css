@@ -2,9 +2,7 @@
     color: #fff;
     padding: 70px 0;
     background-color: #0d0327;
-
-   
-
+    padding: 30px;
 }
 
 .team-item {
@@ -71,6 +69,7 @@
     -moz-border-radius: 50px;
     border-radius: 50px;
 }
+
 .social-follow a {
     justify-content: space-between;
     margin: 10px 10px;

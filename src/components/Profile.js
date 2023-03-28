@@ -38,17 +38,17 @@ export default function Profile(props) {
   return (
     <div>
       <Row className='mx-4'>
-        <Col xs={3}>
+        <Col xs={4}>
 
           <Profilecard pic={pic} bio={bio} dob={dob} name={name} id={id} setUserData={setUserData} setupdateUser={setupdateUser} />
         </Col>
-        <Col xs={6}>
+        <Col xs={8}>
           <br />
           <Createpost id={id} />
           <UserPost id={id} />
         </Col>
-        <Col xs={2}>
-        </Col>
+        {/* <Col xs={2}>
+        </Col> */}
       </Row>
     </div>
   )
