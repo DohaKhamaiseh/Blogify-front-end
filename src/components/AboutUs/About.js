@@ -2,10 +2,7 @@ import React from "react";
 import './About.css';
 import Team from "./Team";
 
-
-
 function About() {
-
     return (
         <>
             <div className="every">
@@ -23,7 +20,6 @@ function About() {
                         </article>
                     </div>
                 </div>
-
             </div>
 
             <Team />

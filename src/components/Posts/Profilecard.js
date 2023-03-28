@@ -6,6 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ModalProfile from '../Posts/ModelProfile';
+import { faUserPen } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './Profile.css';
 
 export default function Profilecard(props) {
 
@@ -19,37 +22,31 @@ export default function Profilecard(props) {
   }
 
   useEffect(() => {
-   
+
   }, []);
 
   return (
-    <div>
-      <Card className='my-4' sx={{ maxWidth: 345 }}>
-        <img
-          component='img'
-          alt={props.name}
-          height='140'
-          src={props.pic? props.pic:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"}
-        />
-        <CardContent>
-          <Typography gutterBottom variant='h5' component='div'>
-            {props.name}
-          </Typography>
-          <Typography variant='body2' color='text.secondary'>
-            Bio: {props.bio}
-          </Typography>
-          <Typography variant='body2' color='text.secondary'>
-            Date of birth: {props.dob}
-          </Typography>
-        </CardContent>
+    <div className="my-4">
+      <div className="card">
+        <div className="cover-photo">
+          <img
+            component='img'
+            alt='green iguana'
+            height='140'
+            src={props.pic}
+            className="profile"
+          />
+        </div>
+        <h3 className="profile-name"> {props.name}</h3>
+        <p className="about"> Bio: {props.bio} <br></br>  Date of birth: {props.dob.substring(0, 10)} </p>
         <CardActions>
           <Button size='small' onClick={handleShow}>
-            Edit
+            <FontAwesomeIcon icon={faUserPen} />
           </Button>
         </CardActions>
-      </Card>
-      <ModalProfile pic={props.pic} bio={props.bio} dob={props.dob} name={props.name} id={props.id} showFlag={showFlag} handleClose={handleClose} setupdateUser={props.setupdateUser}/>
+
+        <ModalProfile pic={props.pic} bio={props.bio} dob={props.dob} name={props.name} id={props.id} showFlag={showFlag} handleClose={handleClose} setupdateUser={props.setupdateUser} />
+      </div>
     </div>
   );
-
 }
