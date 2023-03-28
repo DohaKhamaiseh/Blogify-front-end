@@ -12,7 +12,7 @@ export default function Createpost(props) {
 
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
-    const [image, setImage] = useState();
+    const [image, setImage] = useState('');
     const [show, setShow] = useState(false);
 
     const target = useRef(null);
@@ -51,6 +51,9 @@ export default function Createpost(props) {
                 imageURL: image
             }
             await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addPost`, dataToSend);
+            setTitle('');
+            setContent('');
+            setImage('');
         }
         catch (error) {
 
@@ -59,8 +62,7 @@ export default function Createpost(props) {
 
 
     useEffect(() => {
-        console.log(title);
-        console.log(content);
+
     }, [title, content, image])
 
     return (
@@ -73,6 +75,7 @@ export default function Createpost(props) {
                             <Form.Control
                                 onChange={handleTitleChange}
                                 name='title'
+                                value={title}
                                 as="textarea"
                                 placeholder="Leave a comment here"
                             />
@@ -83,7 +86,7 @@ export default function Createpost(props) {
                                 name='content'
                                 as="textarea"
                                 placeholder="Leave a comment here"
-                                defaultValue={content}
+                                defaultValue={content.replaceAll(".  ",".\n")}
                                 style={{ height: '100px' }}
                             />
                         </FloatingLabel>
@@ -91,12 +94,13 @@ export default function Createpost(props) {
                             <Form.Control
                                 onChange={handleImageChange}
                                 name='imageURL'
+                                value={image}
                                 placeholder="Attach picture URL"
                             />
                         </FloatingLabel >
                         <div className='mx-2 displayflex' >
-                            <Button className='mx-2' value='submitpostbycontent' type='submit' variant="secondary" >Post</Button>
-                            <Button className='mx-2' onClick={handleAIContent} value='submitpostbyai' type='submit' variant="secondary" >Use AI</Button>
+                            <Button className='mx-2' disabled={!title || !content} value='submitpostbycontent' type='submit' variant="secondary" >Post</Button>
+                            <Button className='mx-2' disabled={!title || content} onClick={handleAIContent} value='submitpostbyai' type='submit' variant="secondary" >Use AI</Button>
                             <Button ref={target} onClick={() => setShow(!show)}>
                                 ChatGPT Tooltip
                             </Button>

@@ -5,7 +5,7 @@ import axios from 'axios';
 import PostContent from './PostContent';
 
 
-export default function Post() {
+export default function Post(props) {
 
     const [allPostsData, setAllPostsData] = useState([]);
 
