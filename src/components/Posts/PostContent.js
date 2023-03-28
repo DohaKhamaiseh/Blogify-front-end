@@ -16,7 +16,7 @@ export default function PostContent(props) {
 
     const handleLike = () => {
         if (!liked) {
-            axios.post(`https://blog-post-back-end.vercel.app/increasepostlikes/${Post.postid}`)
+            axios.post(`${process.env.REACT_APP_Backend_Deploy_link}increasepostlikes/${Post.postid}`)
                 .then(() => {
                     setLikes(likes + 1);
                     setLiked(true);
@@ -25,7 +25,7 @@ export default function PostContent(props) {
                     console.error(error);
                 });
         } else {
-            axios.post(`https://blog-post-back-end.vercel.app/decreespostlikes/${Post.postid}`)
+            axios.post(`${process.env.REACT_APP_Backend_Deploy_link}decreespostlikes/${Post.postid}`)
                 .then(() => {
                     setLikes(likes - 1);
                     setLiked(false);

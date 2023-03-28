@@ -9,8 +9,6 @@ import ModalProfile from '../Posts/ModelProfile';
 
 export default function Profilecard(props) {
 
-  const [updateUser, setupdateUser] = useState([]);
-
   const [showFlag, setShowFlag] = useState(false);
 
   const handleShow = () => {
@@ -18,21 +16,20 @@ export default function Profilecard(props) {
   }
   const handleClose = () => {
     setShowFlag(false);
-
   }
 
   useEffect(() => {
    
-  }, [updateUser]);
+  }, []);
 
   return (
     <div>
       <Card className='my-4' sx={{ maxWidth: 345 }}>
         <img
           component='img'
-          alt='green iguana'
+          alt={props.name}
           height='140'
-          src={props.pic}
+          src={props.pic? props.pic:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"}
         />
         <CardContent>
           <Typography gutterBottom variant='h5' component='div'>
@@ -51,7 +48,7 @@ export default function Profilecard(props) {
           </Button>
         </CardActions>
       </Card>
-      <ModalProfile pic={props.pic} bio={props.bio} dob={props.dob} name={props.name} id={props.id} showFlag={showFlag} handleClose={handleClose} setupdateUser={setupdateUser}/>
+      <ModalProfile pic={props.pic} bio={props.bio} dob={props.dob} name={props.name} id={props.id} showFlag={showFlag} handleClose={handleClose} setupdateUser={props.setupdateUser}/>
     </div>
   );
 

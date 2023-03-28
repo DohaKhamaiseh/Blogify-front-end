@@ -1,40 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row';
-import { useAuth0 } from '@auth0/auth0-react';
 import Col from 'react-bootstrap/Col';
 import News from './ApiComponents/News';
 import Post from './Posts/Post';
 import Createpost from './Posts/Createpost';
 import axios from 'axios';
 
-export default function Home() {
+export default function Home(props) {
 
-  // const { user, isAuthenticated } = useAuth0();
-  
-  const [postsData, setPostsData] = useState([]);
-  const [userData, setUserData] = useState([]);
   const [id, setId] = useState('');
 
-  const user = {
-    userFullName: "abd",
-    email: "test65@example.com"
-  }
-
   const addUsers = async () => {
-    const axiosData = await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addUsers`, user);
+    const datafromAuth = {
+      userFullName: props.user.name,
+      email: props.user.email
+    }
+    const axiosData = await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addUsers`, datafromAuth);
     const data = axiosData.data;
     setId(data[0].userid)
   }
 
-  const returnPostData = (arr) => {
-    setPostsData(arr);
-  }
-
   useEffect((e) => {
-
     addUsers(e);
 
-  }, [userData, postsData])
+  }, [])
 
   return (
     <>
@@ -44,10 +33,10 @@ export default function Home() {
             <News />
           </div>
         </Col>
-        <Col xs={6}>
+        <Col xs={9}>
 
           <Createpost id={id} />
-          <Post id={id}/>
+          <Post id={id} />
         </Col>
       </Row>
     </>

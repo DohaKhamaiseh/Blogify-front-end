@@ -6,10 +6,9 @@ import '../profile.css'
 import UserPost from './Posts/UserPost';
 import Profilecard from './Posts/Profilecard'
 import axios from 'axios';
-import { useAuth0 } from '@auth0/auth0-react';
 
-export default function Profile() {
-
+export default function Profile(props) {
+  const [updateUser, setupdateUser] = useState([]);
   const [id, setId] = useState('');
   const [pic, setpic] = useState('');
   const [bio, setbio] = useState('');
@@ -17,15 +16,13 @@ export default function Profile() {
   const [name, setname] = useState('');
   const [userData, setUserData] = useState([]);
 
-  const user = {
-    userFullName: "abd",
-    email: "test65@example.com"
-  }
-
   const addUsers = async () => {
-    const axiosData = await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addUsers`, user);
+    const datafromAuth = {
+      userFullName: props.user.name,
+      email: props.user.email
+    }
+    const axiosData = await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addUsers`, datafromAuth);
     const data = axiosData.data;
-    //console.log(data[0].userid);
     setUserData(data);
     setId(data[0].userid);
     setpic(data[0].imageurl);
@@ -36,14 +33,14 @@ export default function Profile() {
 
   useEffect(() => {
     addUsers();
-  }, [userData])
+  }, [userData, updateUser])
 
   return (
     <div>
       <Row className='mx-4'>
         <Col xs={3}>
-        
-          <Profilecard   pic={pic} bio={bio} dob={dob} name={name} id={id} setUserData={setUserData}/>
+
+          <Profilecard pic={pic} bio={bio} dob={dob} name={name} id={id} setUserData={setUserData} setupdateUser={setupdateUser} />
         </Col>
         <Col xs={6}>
           <br />

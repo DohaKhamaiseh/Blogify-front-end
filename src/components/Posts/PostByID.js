@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useParams } from 'react-router-dom';
 
 import axios from 'axios';
@@ -19,10 +20,22 @@ import ModelComment from '../Posts/ModelComment';
 import ModelPost from '../Posts/ModelPost';
 
 
-
 export default function PostByID() {
 
-    const userId = 3;
+    const { user, isAuthenticated } = useAuth0();
+    const [id, setId] = useState('');
+
+
+    const addUsers = async () => {
+        const datafromAuth = {
+            userFullName: user.name,
+            email: user.email
+        }
+        const axiosData = await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addUsers`, datafromAuth);
+        const data = axiosData.data;
+        setId(data[0].userid)
+    }
+
     const ParamsObj = useParams();
     const postId = ParamsObj.id;
     const [post, setPost] = useState([]);
@@ -46,13 +59,14 @@ export default function PostByID() {
     useEffect(() => {
         getPost();
         getComments();
+        addUsers();
     }, []);
 
     const handleAddComment = async () => {
         if (newComment !== '') {
             await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}saveComment`, {
                 postId: postId,
-                userId: userId,
+                userId: id,
                 Content: newComment,
             });
             getComments();
@@ -90,12 +104,10 @@ export default function PostByID() {
         if (obj.content === '') {
             obj.content = post.content;
         }
-        console.log(obj.imageURL);
         try {
             await axios.put(`${process.env.REACT_APP_Backend_Deploy_link}updatepost/${postId}`, {
-                "title":obj.title ,
-                "content":  obj.content,
-
+                "title": obj.title,
+                "content": obj.content,
                 "imageURL": obj.imageURL
             });
             getPost();
@@ -151,7 +163,7 @@ export default function PostByID() {
                                     {post.content}
                                 </Typography>
                             </CardContent>
-                            {userId === post.userid && (
+                            {id === post.userid && (
                                 <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                     <Button
                                         size="small"
@@ -173,7 +185,7 @@ export default function PostByID() {
                             )}
                         </Card>
                     )}
-                    {userId && (
+                    {id && (
                         <Card sx={{ mb: 2 }}>
                             <CardContent>
                                 <Typography variant="h6" gutterBottom>
@@ -210,7 +222,7 @@ export default function PostByID() {
                                 </Typography>
 
                             </CardContent>
-                            {userId === comment.userid && (
+                            {id === comment.userid && (
                                 <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                     <Button
                                         size="small"

@@ -5,7 +5,8 @@ export default function CarouselInMain() {
     return (
         <Carousel>
             <Carousel.Item>
-                <div className='carouselformain1'></div>
+                <div className='carouselformain1'>
+                </div>
             </Carousel.Item>
             <Carousel.Item >
                 <div className='carouselformain2'></div>

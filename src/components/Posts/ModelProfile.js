@@ -4,39 +4,17 @@ import Form from "react-bootstrap/Form";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-
 function ModalProfile(props) {
-
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-  const [img, setImg] = useState('');
-  const [bio, setBio] = useState('');
-
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
-  };
-
-  const handleImgChange = (event) => {
-    setImg(event.target.value);
-  };
-
-  const handleBioChange = (event) => {
-    setBio(event.target.value);
-  };
+const [habal, setdobstring] = useState('');
 
   const updatePro = async (e) => {
     e.preventDefault();
     let obj = {
-      userFullName: name,
-      dateOfBirth: date,
-      imageURL: img,
-      bio: bio
+      userFullName: e.target.Name.value,
+      dateOfBirth: e.target.Dob.value,
+      imageURL: e.target.Img.value,
+      bio: e.target.Bio.value
     }
-
 
     const serverURl = `${process.env.REACT_APP_Backend_Deploy_link}updateprofil/${props.id}`
     const axiosRes = await axios.put(serverURl, obj);
@@ -44,6 +22,10 @@ function ModalProfile(props) {
     props.setupdateUser(newUser);
     props.handleClose();
   }
+
+  useEffect(() => {
+    setdobstring(props.dob.substring(0, 10));
+  }, [])
 
   return (
 
@@ -56,13 +38,13 @@ function ModalProfile(props) {
         <Form onSubmit={updatePro}>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Name" name="Name" defaultValue={props.name} onChange={handleNameChange} />
+            <Form.Control type="text" placeholder="Name" name="Name" defaultValue={props.name} />
             <Form.Label>image URl</Form.Label>
-            <Form.Control type="text" placeholder="Image" name="Img" defaultValue={props.pic} onChange={handleImgChange} />
+            <Form.Control type="text" placeholder="Image" name="Img" defaultValue={props.pic} />
             <Form.Label>Bio</Form.Label>
-            <Form.Control type="text" placeholder="BIO" name="Bio" defaultValue={props.bio} onChange={handleBioChange} />
+            <Form.Control type="text" placeholder="BIO" name="Bio" defaultValue={props.bio} />
             <Form.Label>Birth date</Form.Label>
-            <input id="startDate" name="Date" defaultValue={props.dob} onChange={handleDateChange} className="form-control" type="date" data-date="" data-date-format="DD MMMM YYYY" />
+            <input defaultValue={habal} name="Dob" className="form-control" type="date" data-date-format="MM DD YYYY" />
           </Form.Group>
           <Button variant="primary" type="submit">
             Save changes
