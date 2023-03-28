@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
 import News from './ApiComponents/News';
 import Post from './Posts/Post';
 import Createpost from './Posts/Createpost';
+import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+import '../home.css';
 
 export default function Home(props) {
-
+  const { isAuthenticated, isLoading, error } = useAuth0();
   const [id, setId] = useState('');
+  const [userData, setUserData] = useState([]);
 
   const addUsers = async () => {
     const datafromAuth = {
@@ -26,19 +30,22 @@ export default function Home(props) {
   }, [])
 
   return (
-    <>
-      <Row className='mx-4 my-4'>
-        <Col xs={3}>
+    <main className='hometheplacewhereibelong'>
+      <Row className='mx-4 '>
+        <Col xs={2}>
+        </Col>
+        <Col xs={8}>
           <div className='news'>
             <News />
           </div>
-        </Col>
-        <Col xs={9}>
-
-          <Createpost id={id} />
+          {isAuthenticated && !isLoading && !error ? <Createpost id={id} /> : <Alert variant='danger'>
+            Welcome Guest! To use our website, you will need to join us. Enjoy your stay 😊
+          </Alert>}
           <Post id={id} />
         </Col>
+        <Col xs={2}>
+        </Col>
       </Row>
-    </>
+    </main>
   )
 }

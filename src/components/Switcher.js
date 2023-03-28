@@ -7,49 +7,44 @@ import Footer from './Headerandfooter/Footer';
 import Profile from './Profile';
 import PostByID from './Posts/PostByID';
 import About from '../components/AboutUs/About';
-import MainPage from './Main';
+import '../App.css'
 
 function Switcher(props) {
-    const { user, loginWithRedirect, isAuthenticated } = useAuth0();
-    const { isLoading, error } = useAuth0();
-    console.log(user);
-    
+    const { user } = useAuth0();
+
     const Wrapper = ({ children }) => (
         <>
-            <Header className={props.scrollPosition === 0 ? '' : 'scrolledinpage'} />
+            <Header user={user} className={props.scrollPosition === 0 ? '' : 'scrolledinpage'} />
             {children}
-            <Footer />
+            <Footer className='footer'/>
         </>
     );
 
     return (
         <main>
-            {!isAuthenticated && !isLoading && !error ? <MainPage loginWithRedirect={loginWithRedirect} /> :
-                (
-                    <Routes>
-                        <Route path="/" element={(
-                            <Wrapper>
-                                <Home user={user}/>
-                            </Wrapper>
-                        )} />
-                        <Route path="/profile" element={(
-                            <Wrapper>
-                                <Profile user={user} />
-                            </Wrapper>
-                        )} />
+            <Routes>
+                <Route path="/" element={(
+                    <Wrapper>
+                        <Home  user={user} />
+                    </Wrapper>
+                )} />
+                <Route path="/profile" element={(
+                    <Wrapper>
+                        <Profile  user={user} />
+                    </Wrapper>
+                )} />
 
-                        <Route path="/about" element={(
-                            <Wrapper>
-                                <About />
-                            </Wrapper>
-                        )} />
-                        <Route path="/postinfo/:id" element={(
-                            <Wrapper>
-                                <PostByID />
-                            </Wrapper>
-                        )} />
-                    </Routes>
-                )}
+                <Route path="/about" element={(
+                    <Wrapper>
+                        <About />
+                    </Wrapper>
+                )} />
+                <Route path="/postinfo/:id" element={(
+                    <Wrapper>
+                        <PostByID  />
+                    </Wrapper>
+                )} />
+            </Routes>
         </main>
     )
 }

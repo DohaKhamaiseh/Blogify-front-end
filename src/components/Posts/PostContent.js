@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
-
-
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 
 export default function PostContent(props) {
 
@@ -40,33 +40,42 @@ export default function PostContent(props) {
     return (
         <>
             <Card key={Post.postid} className='my-2'>
-                <CardContent>
-                    <div className='displayflex'>
-                        <img className='imageofuserinpost' src={Post.userimageurl} />
-                        <Typography gutterBottom variant="h5" component="div">
-                            {Post.userfullname}
-                        </Typography>
-                    </div>
-                    <Typography gutterBottom variant="h6" component="div">
-                        {Post.title}
-                    </Typography>
-                    <img
-                        className='mx-2'
-                        src={Post.imageurl}
-                        title="Post Image"
-                        alt=''
-                    />
-                    <Typography variant="body2" color="text.secondary">
-                        {Post.content}
-                    </Typography>
-                </CardContent>
+                <div className='displayflex'>
+                    <CardContent className='postimagecontainer'>
+                        <img
+                            className='postimage'
+                            src={Post.imageurl}
+                            title="Post Image"
+                            alt=''
+                        />
+                    </CardContent>
+                    <CardContent className='postinfo'>
+                        <div className='section1post'>
+                            <div className='titleinpostinhome'>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    {Post.title}
+                                </Typography>
+                            </div>
+                            <div className='displayflex profileinpostinhome'>
+                                <p>
+                                    By {Post.userfullname}
+                                </p>
+                                <img className='mx-2 profileimage' src={Post.userimageurl} />
+                            </div>
+                        </div>
+                        <CardContent className='mx-2'>
+                            <Typography variant="h6" component="div" color="text.secondary">
+                                {Post.content.length > 200 ? `${Post.content.substring(0, 300)}...` : Post.content}
+                            </Typography>
 
-                <CardActions>
-                    <Button onClick={handleLike} size="small">{liked ? 'Unlike' : 'Like'} ({likes})</Button>
-                    <Button href={`/postinfo/${Post.postid}`} size="small">See More</Button>
-                </CardActions>
+                        </CardContent>
+                        <CardActions>
+                            <Button onClick={handleLike} >{liked ? <ThumbDownIcon className='mx-2' /> : <ThumbUpIcon className='mx-2' />}{likes}</Button>
+                            <Button href={`/postinfo/${Post.postid}`} >Read More</Button>
+                        </CardActions>
+                    </CardContent>
+                </div>
             </Card>
-
         </>
     );
 }
