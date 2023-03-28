@@ -23,7 +23,6 @@ export default function Post(props) {
         <>
             {allPostsData.map((Post) => {
                 return (
-
                     <PostContent key={Post.postid.toString()} data={Post} />
                 )
             })}
