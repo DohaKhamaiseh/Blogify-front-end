@@ -43,12 +43,12 @@ export default function Profile(props) {
           <Profilecard pic={pic} bio={bio} dob={dob} name={name} id={id} setUserData={setUserData} setupdateUser={setupdateUser} />
         </Col>
         <Col xs={8}>
+
           <br />
           <Createpost id={id} />
           <UserPost id={id} />
         </Col>
-        {/* <Col xs={2}>
-        </Col> */}
+
       </Row>
     </div>
   )

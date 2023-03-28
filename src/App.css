@@ -8,7 +8,28 @@
   pointer-events: none;
 }
 
-footer {
+.linkinheader{
+  border-radius: 5px;
+  margin: 0px 10px;
+}
+
+.linkinheader:hover {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.linkinheader::after {
+  border-radius: 5px;
+}
+
+.imageinheaderforuser {
+  width: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.footer {
+  bottom: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useParams } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import '../../postbyid.css'
 
 import axios from 'axios';
 import {
@@ -143,114 +146,118 @@ export default function PostByID() {
 
 
     return (
-        <Box sx={{ p: 2 }}>
-            <Grid container spacing={2} justifyContent="center">
-                <Grid item xs={12} md={8}>
-                    {post && (
-                        <Card sx={{ mb: 2 }}>
-                            <CardHeader
-                                avatar={<Avatar src={post.userimageurl} />}
-                                title={post.title}
-                                subheader={`By ${post.userfullname} on ${new Date(post.created_at).toLocaleDateString()}`}
-                            />
-                            <CardMedia
-                                sx={{ height: 0, paddingTop: '56.25%' }}
-                                image={post.imageurl}
-                                title={post.title}
-                            />
-                            <CardContent>
-                                <Typography variant="body1" color="text.secondary">
-                                    {post.content}
-                                </Typography>
-                            </CardContent>
-                            {id === post.userid && (
-                                <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                    <Button
-                                        size="small"
-                                        variant="outlined"
-                                        onClick={handlePostShow}
+        <main className='postbyidcontainer'>
+            <Box sx={{ p: 2 }}>
+                <Grid container spacing={2} justifyContent="center">
+                    <Grid item xs={12} md={8}>
+                        {post && (
+                            <Card sx={{ mb: 2 }}>
+                                <div className='displayflex'>
+                                    <div className='divimageinpostbyid'>
+                                        <img className='imageinpostbyid'
+                                            sx={{ height: 0, paddingTop: '56.25%' }}
+                                            src={post.imageurl}
+                                            title={post.title}
+                                        />
+                                        {id && (
+                                            <div className='commentsection'>
+                                                <Typography variant="h6" gutterBottom>
+                                                    Add Comment
+                                                </Typography>
+                                                <TextField
+                                                    fullWidth
+                                                    label="Comment"
+                                                    multiline
+                                                    rows={4}
+                                                    value={newComment}
+                                                    onChange={(e) => setNewComment(e.target.value)}
+                                                    sx={{ mb: 2 }}
+                                                />
+                                                <Button variant="contained" onClick={handleAddComment}>
+                                                    Add Comment
+                                                </Button>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className='divcontentinpostinid'>
+                                        <div className='headerofpostbyid'>
+                                            <CardHeader
+                                                avatar={<Avatar src={post.userimageurl} />}
+                                                title={<h4>{post.title}</h4>}
+                                                subheader={`By ${post.userfullname} on ${new Date(post.created_at).toLocaleDateString()}`}
+                                            />
+                                            <div>
+                                                {id === post.userid && (
+                                                    <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                                        <Button
+                                                            variant="outlined"
+                                                            onClick={handlePostShow}
+                                                        /*onClick={() => handleEditPost(post.postid)}*/
+                                                        >
+                                                            <EditIcon />
+                                                        </Button>
+                                                        <Button
+                                                            variant="outlined"
+                                                            onClick={() => handleDeletePost(post.postid)}
+                                                        >
+                                                            <DeleteIcon />
+                                                        </Button>
+                                                    </CardActions>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <CardContent>
+                                            <Typography variant="body1" color="text.secondary">
+                                                {post.content}
+                                            </Typography>
+                                        </CardContent>
+                                    </div>
+                                </div>
 
-                                    /*onClick={() => handleEditPost(post.postid)}*/
-                                    >
-                                        Edit
-                                    </Button>
-                                    <Button
-                                        size="small"
-                                        variant="outlined"
-                                        onClick={() => handleDeletePost(post.postid)}
-                                    >
-                                        Delete
-                                    </Button>
-                                </CardActions>
-                            )}
-                        </Card>
-                    )}
-                    {id && (
-                        <Card sx={{ mb: 2 }}>
-                            <CardContent>
-                                <Typography variant="h6" gutterBottom>
-                                    Add Comment
-                                </Typography>
-                                <TextField
-                                    fullWidth
-                                    label="Comment"
-                                    multiline
-                                    rows={4}
-                                    value={newComment}
-                                    onChange={(e) => setNewComment(e.target.value)}
-                                    sx={{ mb: 2 }}
-                                />
-                                <Button variant="contained" onClick={handleAddComment}>
-                                    Add Comment
-                                </Button>
+                            </Card>
+                        )}
+                        {comments.map((comment) => (
+                            <Card key={comment.commentid} sx={{ mb: 2 }}>
+                                <div className='displayflex'>
+                                    <CardHeader
+                                        avatar={<Avatar src={comment.userimageurl} />}
+                                        title={comment.userfullname}
+                                        subheader={`Commented on ${new Date(comment.created_at).toLocaleDateString()}`}
+                                    />
+                                    {id === comment.userid && (
+                                        <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => handleCeommentSelected(comment)}
+                                            >
+                                                <EditIcon/>
+                                            </Button>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => handleDeleteComment(comment.commentid)}
+                                            >
+                                                <DeleteIcon/>
+                                            </Button>
+                                        </CardActions>
+                                    )}
+                                    </div>
+                                <CardContent>
+                                    <Typography variant="body1" color="text.secondary">
+                                        {comment.content}
+                                    </Typography>
 
-                            </CardContent>
-                        </Card>
+                                </CardContent>
 
-                    )}
-
-                    {comments.map((comment) => (
-                        <Card key={comment.commentid} sx={{ mb: 2 }}>
-                            <CardHeader
-                                avatar={<Avatar src={comment.userimageurl} />}
-                                title={comment.userfullname}
-                                subheader={`Commented on ${new Date(comment.created_at).toLocaleDateString()}`}
-                            />
-                            <CardContent>
-                                <Typography variant="body1" color="text.secondary">
-                                    {comment.content}
-                                </Typography>
-
-                            </CardContent>
-                            {id === comment.userid && (
-                                <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                    <Button
-                                        size="small"
-                                        variant="outlined"
-                                        onClick={() => handleCeommentSelected(comment)}
-                                    >
-                                        Edit
-                                    </Button>
-                                    <Button
-                                        size="small"
-                                        variant="outlined"
-                                        onClick={() => handleDeleteComment(comment.commentid)}
-                                    >
-                                        Delete
-                                    </Button>
-                                </CardActions>
-
-                            )}
-
-                        </Card>
-                    ))}
-                    <ModelComment key={CommentSelected.commentid} comment={CommentSelected} showFlag={showCommentFlag} handleClose={handleCeommentClose} handleEditComment={handleEditComment} />
-                    <ModelPost key={postId} post={post} showFlag={showPostFlag} handleClose={handlePostClose} handleEditPost={handleEditPost} />
+                            </Card>
+                        ))}
+                        <ModelComment key={CommentSelected.commentid} comment={CommentSelected} showFlag={showCommentFlag} handleClose={handleCeommentClose} handleEditComment={handleEditComment} />
+                        <ModelPost key={postId} post={post} showFlag={showPostFlag} handleClose={handlePostClose} handleEditPost={handleEditPost} />
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Box>
-
-
+            </Box>
+        </main>
     );
 }
 
