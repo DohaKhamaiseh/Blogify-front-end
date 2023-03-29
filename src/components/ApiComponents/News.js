@@ -34,8 +34,11 @@ export default function News() {
           </div>
           <div className='innewstwo'>
             <div className='mx-4 my-4'>
-              <span>hello</span>
-              <p>This is a test of how this div should look like when all things are done right.</p>
+              <h2>Blogify</h2>
+              <p>
+                Blogify is a social media platform for sharing posts, engaging in discussions, and fostering a supportive community for self-expression and creativity.
+
+              </p>
             </div>
           </div>
         </div>
@@ -43,7 +46,7 @@ export default function News() {
           <Carousel>
             {newsArr.slice(8, 15).map((item, index) => (
               <Carousel.Item key={index}>
-                <img 
+                <img
                   className="imginnewscaru d-block w-90"
                   src={item?.urlToImage}
                   alt={item?.title}

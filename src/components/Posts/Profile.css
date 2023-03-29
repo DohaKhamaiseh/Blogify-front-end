@@ -38,4 +38,13 @@
 .about-pc {
     margin-top: 30px;
     line-height: 1.6;
+    color: white;
+    font-size: 13px;
+    text-align: left;
+}
+
+.chat-icon {
+    display: flex !important;
+    background-color:#5aad7e !important;
+    align-items: center;
 }

@@ -5,6 +5,8 @@ import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import './Profile.css';
+import chat from '../images/Capture-removebg-preview.png'
 import axios from 'axios';
 
 function Createpostmodal(props) {
@@ -99,7 +101,7 @@ function Createpostmodal(props) {
                     </FloatingLabel >
                     <div className='mx-2 displayflex' >
                         <Button className='mx-2' disabled={!title || !content || !image} value='submitpostbycontent' type='submit' variant="secondary" >Post</Button>
-                        <Button className='mx-2' disabled={!title || content || !image} onClick={handleAIContent} value='submitpostbyai' type='submit' variant="secondary" >Use AI</Button>
+                        <Button className='mx-2 chat-icon' disabled={!title || content || !image} onClick={handleAIContent} value='submitpostbyai' type='submit' variant="secondary" ><img src={chat} width="20px"/>Use AI</Button>
                         <Button ref={target} onClick={() => setShow(!show)}>
                             ChatGPT Tooltip
                         </Button>
