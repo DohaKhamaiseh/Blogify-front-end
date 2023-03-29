@@ -10,6 +10,7 @@ import { faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Profile.css';
 
+
 export default function Profilecard(props) {
 
   const [showFlag, setShowFlag] = useState(false);
@@ -27,18 +28,18 @@ export default function Profilecard(props) {
 
   return (
     <div className="my-4">
-      <div className="card">
-        <div className="cover-photo">
+      <div className="cardinprofilec">
+        <div className="cover-photo-pc">
           <img
             component='img'
             alt='green iguana'
             height='140'
             src={props.pic}
-            className="profile"
+            className="profile-pc"
           />
         </div>
-        <h3 className="profile-name"> {props.name}</h3>
-        <p className="about"> Bio: {props.bio} <br></br>  Date of birth: {props.dob.substring(0, 10)} </p>
+        <h3 className="profile-name-pc"> {props.name}</h3>
+        <p className="about-pc"> Bio: {props.bio} <br></br>  Date of birth: {props.dob} </p>
         <CardActions>
           <Button size='small' onClick={handleShow}>
             <FontAwesomeIcon icon={faUserPen} />
