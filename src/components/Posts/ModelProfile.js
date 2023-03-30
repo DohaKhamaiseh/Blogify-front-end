@@ -5,8 +5,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 function ModalProfile(props) {
-const [habal, setdobstring] = useState('');
 
+ const thedate = props.dob.substring(0,10);
   const updatePro = async (e) => {
     e.preventDefault();
     let obj = {
@@ -19,12 +19,14 @@ const [habal, setdobstring] = useState('');
     const serverURl = `${process.env.REACT_APP_Backend_Deploy_link}updateprofil/${props.id}`
     const axiosRes = await axios.put(serverURl, obj);
     const newUser = axiosRes.data;
+    props.updateddata(e.target.Img.value);
+    props.updateddata2(e.target.Name.value);
     props.setupdateUser(newUser);
     props.handleClose();
   }
 
   useEffect(() => {
-    setdobstring(props.dob.substring(0, 10));
+
   }, [])
 
   return (
@@ -44,7 +46,7 @@ const [habal, setdobstring] = useState('');
             <Form.Label>Bio</Form.Label>
             <Form.Control type="text" placeholder="BIO" name="Bio" defaultValue={props.bio} />
             <Form.Label>Birth date</Form.Label>
-            <input defaultValue={habal} name="Dob" className="form-control" type="date" data-date-format="MM DD YYYY" />
+            <input defaultValue={props.slicedArray} name="Dob" className="form-control" type="date" data-date-format="MM DD YYYY" />
           </Form.Group>
           <Button variant="primary" type="submit">
             Save changes

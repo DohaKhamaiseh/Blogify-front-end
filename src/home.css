@@ -1,5 +1,5 @@
 .hometheplacewhereibelong {
-    background-color: #94add3;
+    background-color: #9cc0f8c9;
 }
 
 .createpostcard {
@@ -106,4 +106,8 @@
 .imginnewscaru {
     image-resolution:inherit;
     border-radius: 5px;
+}
+
+.news{
+    margin-top: 85px;
 }

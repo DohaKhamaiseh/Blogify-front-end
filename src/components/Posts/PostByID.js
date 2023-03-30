@@ -4,7 +4,9 @@ import { useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import '../../postbyid.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import {
     Box,
@@ -21,13 +23,22 @@ import {
 } from '@mui/material';
 import ModelComment from '../Posts/ModelComment';
 import ModelPost from '../Posts/ModelPost';
-
+import DeleteWormingModal from '../Posts/DeleteWarningModal';
 
 export default function PostByID() {
 
     const { user, isAuthenticated } = useAuth0();
     const [id, setId] = useState('');
 
+    const [show, setshow] = useState(false);
+
+    const handleWarninOpen = () => {
+        setshow(true);
+    };
+
+    const handleWarninClose = () => {
+        setshow(false);
+    };
 
     const addUsers = async () => {
         const datafromAuth = {
@@ -94,6 +105,7 @@ export default function PostByID() {
     const handleDeletePost = async () => {
         await axios.delete(`${process.env.REACT_APP_Backend_Deploy_link}deletepost/${postId}`);
         window.location.href = "/"; // redirect to home page after deleting the post
+        handleWarninClose();
     };
 
     const handleEditPost = async (data) => {
@@ -190,17 +202,21 @@ export default function PostByID() {
                                                 {id === post.userid && (
                                                     <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                                         <Button
-                                                            variant="outlined"
+                                                            variant="contained"
                                                             onClick={handlePostShow}
                                                         /*onClick={() => handleEditPost(post.postid)}*/
                                                         >
-                                                            <EditIcon />
+                                                            <FontAwesomeIcon icon={faPenToSquare} beatFade style={{color: "#ededed",}} />
+                                                          
                                                         </Button>
                                                         <Button
-                                                            variant="outlined"
-                                                            onClick={() => handleDeletePost(post.postid)}
+                                                            variant="contained"
+                                                            color="warning"
+                                                            // onClick={() => handleDeletePost(post.postid)}
+                                                            onClick={() => handleWarninOpen()}
+                                                            handleClickOpen
                                                         >
-                                                            <DeleteIcon />
+                                                             <FontAwesomeIcon icon={faTrash} shake style={{color: "#f0f2f5",}} />
                                                         </Button>
                                                     </CardActions>
                                                 )}
@@ -228,17 +244,18 @@ export default function PostByID() {
                                         <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                             <Button
                                                 size="small"
-                                                variant="outlined"
+                                                variant="contained"
                                                 onClick={() => handleCeommentSelected(comment)}
                                             >
-                                                <EditIcon/>
+                                                 <FontAwesomeIcon icon={faPenToSquare} beatFade style={{color: "#ededed",}} />
                                             </Button>
                                             <Button
                                                 size="small"
-                                                variant="outlined"
+                                                variant="contained"
+                                                color='warning'
                                                 onClick={() => handleDeleteComment(comment.commentid)}
                                             >
-                                                <DeleteIcon/>
+                                                <FontAwesomeIcon icon={faTrash} shake style={{color: "#f0f2f5",}} />
                                             </Button>
                                         </CardActions>
                                     )}
@@ -254,6 +271,7 @@ export default function PostByID() {
                         ))}
                         <ModelComment key={CommentSelected.commentid} comment={CommentSelected} showFlag={showCommentFlag} handleClose={handleCeommentClose} handleEditComment={handleEditComment} />
                         <ModelPost key={postId} post={post} showFlag={showPostFlag} handleClose={handlePostClose} handleEditPost={handleEditPost} />
+                        <DeleteWormingModal key={postId} postId={postId} show={show} handleClose={handleWarninClose} handleDeletePost={handleDeletePost} />
                     </Grid>
                 </Grid>
             </Box>

@@ -1,7 +1,6 @@
 .postbyidcontainer {
-    background-color: #a1c6ff;
+    background-color: #9cc0f8c9;
 }
-
 .divimageinpostbyid {
     width: 50%;
     display: flex;
@@ -30,4 +29,6 @@
     display: block;
     margin-bottom: 10px;
 }
+
+
 

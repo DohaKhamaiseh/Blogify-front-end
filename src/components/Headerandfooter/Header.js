@@ -9,12 +9,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 
-export default function Header() {
+export default function Header(props) {
   const { user, isAuthenticated, loginWithRedirect, isLoading, logout, error } = useAuth0();
 
   const [name, setname] = useState('');
   const [image, setimage] = useState('');
-  const [data, setData] = useState('');
 
   const addUsers = async () => {
     const datafromAuth = {
@@ -24,8 +23,6 @@ export default function Header() {
 
     const axiosData = await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addUsers`, datafromAuth);
     const data = axiosData.data;
-    console.log(data);
-    setData(data);
     setname(data[0].userfullname);
     setimage(data[0].imageurl);
   }
@@ -51,8 +48,8 @@ export default function Header() {
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
-            {isAuthenticated && !isLoading ? <span className="me-3">Hello {name}</span> : ""}
-            {isAuthenticated && !isLoading ? <Image className='imageinheaderforuser' src={image} alt="" /> : ""}
+            {isAuthenticated && !isLoading ? <span className="me-3">Hello {props.updatedname? props.updatedname : name}</span> : ""}
+            {isAuthenticated && !isLoading ? <Image className='imageinheaderforuser' src={props.updatedimage? props.updatedimage : image} alt="" /> : ""}
             {isAuthenticated && !isLoading && !error ? <Button onClick={() => logout()} variant="contained">Logout</Button> : <Button onClick={() => loginWithRedirect()} variant="contained">Login/Signup</Button>}
           </Navbar.Collapse>
         </Container>

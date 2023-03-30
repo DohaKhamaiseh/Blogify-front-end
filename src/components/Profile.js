@@ -36,16 +36,16 @@ export default function Profile(props) {
   }, [userData, updateUser])
 
   return (
-    <div>
+    <div className='profilebg'>
       <Row className='mx-4'>
         <Col xs={4}>
 
-          <Profilecard pic={pic} bio={bio} dob={dob} name={name} id={id} setUserData={setUserData} setupdateUser={setupdateUser} />
+          <Profilecard updateddata2={props.updateddata2} updateddata={props.updateddata} pic={pic} bio={bio} dob={dob} name={name} id={id} setUserData={setUserData} setupdateUser={setupdateUser} />
         </Col>
         <Col xs={8}>
 
           <br />
-          <Createpost id={id} />
+          <Createpost pic={pic} id={id} />
           <UserPost id={id} />
         </Col>
 

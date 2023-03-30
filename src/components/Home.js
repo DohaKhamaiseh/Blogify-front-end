@@ -10,9 +10,12 @@ import axios from 'axios';
 import '../home.css';
 
 export default function Home(props) {
+
   const { isAuthenticated, isLoading, error } = useAuth0();
+
   const [id, setId] = useState('');
-  const [userData, setUserData] = useState([]);
+  const [image, setImage] = useState('');
+
 
   const addUsers = async () => {
     const datafromAuth = {
@@ -22,11 +25,11 @@ export default function Home(props) {
     const axiosData = await axios.post(`${process.env.REACT_APP_Backend_Deploy_link}addUsers`, datafromAuth);
     const data = axiosData.data;
     setId(data[0].userid)
+    setImage(data[0].imageurl)
   }
 
-  useEffect((e) => {
-    addUsers(e);
-
+  useEffect(() => {
+    addUsers();
   }, [])
 
   return (
@@ -38,7 +41,7 @@ export default function Home(props) {
           <div className='news'>
             <News />
           </div>
-          {isAuthenticated && !isLoading && !error ? <Createpost id={id} /> : <Alert variant='danger'>
+          {isAuthenticated && !isLoading && !error ? <Createpost image={image} id={id} /> : <Alert variant='danger'>
             Welcome Guest! To use our website, you will need to join us. Enjoy your stay 😊
           </Alert>}
           <Post id={id} />
