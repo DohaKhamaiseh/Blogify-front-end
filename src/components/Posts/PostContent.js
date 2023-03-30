@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import './Profile.css';
 
 export default function PostContent(props) {
 
@@ -52,7 +53,7 @@ export default function PostContent(props) {
                     <CardContent className='postinfo'>
                         <div className='section1post'>
                             <div className='titleinpostinhome'>
-                                <Typography gutterBottom variant="h5" component="div">
+                                <Typography gutterBottom variant="h5" className='postitle' component="div">
                                     {Post.title}
                                 </Typography>
                             </div>
@@ -70,7 +71,7 @@ export default function PostContent(props) {
 
                         </CardContent>
                         <CardActions>
-                            <Button onClick={handleLike} >{liked ? <ThumbDownIcon className='mx-2' /> : <ThumbUpIcon className='mx-2' />}{likes}</Button>
+                            <Button onClick={handleLike} disabled={props.userid===''} >{liked ? <ThumbUpIcon className='mx-2 likebold' /> : <ThumbUpIcon className='mx-2' />}{likes}</Button>
                             <Button href={`/postinfo/${Post.postid}`} >Read More</Button>
                         </CardActions>
                     </CardContent>

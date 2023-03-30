@@ -44,7 +44,7 @@ export default function News() {
         </div>
         <div className='newsdivtwo'>
           <Carousel>
-            {newsArr.slice(8, 15).map((item, index) => (
+            {newsArr.slice(10, 15).map((item, index) => (
               <Carousel.Item key={index}>
                 <img
                   className="imginnewscaru d-block w-90"

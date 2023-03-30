@@ -19,7 +19,7 @@ export default function Createpost(props) {
                 className='my-2 createpostcard'>
                 <CardContent className='postcard'>
                     <div>
-                        <img className="profileimage" src='https://i1.sndcdn.com/artworks-000224673758-y7imjr-t500x500.jpg'></img>
+                        <img className="profileimage" src={props.image? props.image : props.pic} alt={props.pic}></img>
                     </div>
                     <Button onClick={handleShow} className='button'><EditIcon/>  What's on your mind?  </Button>
                 </CardContent>

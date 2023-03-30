@@ -1,4 +1,6 @@
 .App {
+  display:flex;
+  flex-direction: column;
   text-align: center;
   min-height: 100vh;
 }
@@ -28,8 +30,9 @@
   border-radius: 50%;
 }
 
-.footer {
+.footer{
   bottom: 0;
+  
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -53,6 +56,10 @@
   color: #61dafb;
 }
 
+.header {
+  background-color: #12233c;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -60,4 +67,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.list-unstyled{
+  padding: 35px;
+}
+
+.list-unstyled li a{
+  color: white;
+  text-decoration: none;
+}
+
+.list-unstyled li a:hover{
+  color:#9cc0f8c9 !important;
+ 
 }
