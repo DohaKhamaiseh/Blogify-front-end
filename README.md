@@ -1,44 +1,19 @@
-# blog-post-front-end
+# Blogify-Front-end
 
-To begin working on the backend side of a project, follow these steps:
+**This is the Frontend for Blogify website which is  a platform where users can post blogs with pictures, titles, and content. What makes Blogify unique is that users can optionally use GPT3 to generate content for their blog posts. This means that users can save time and effort by letting GPT3 write their content for them.**
 
-* go to a directory where you want to save the Project and run these commands :
+**we used Bootstrap, ReactJS, and Material UI. These technologies help to create an intuitive and user-friendly interface that users can easily navigate. Users can create new posts, view existing posts, and interact with other users by leaving likes and comments. Even unregistered guests can view posts on the platform, but they cannot create new posts or interact with existing posts beyond leaving likes.**
 
-  ````
-  mkdir BlogPost
-  cd BlogPost
-  git clone git@github.com:Blog-Post-Group-1/blog-post-front-end.git
-  cd blog-post-front-end
-  ````
+## [Click to see Blogify ^_^](https://main--chipper-platypus-a810ef.netlify.app/)
 
-* run these commands to install librarys :
 
-  ````
-  npm install
 
-  ````
 
-<!-- * Create a .env file in the root directory run this commands
+##  [The Backend Repo](https://github.com/DohaKhamaiseh/Blogify-Backend/tree/main)
 
-  ````
-  touch .env
-  ````
-
-* add this to .env file
-
-  ````
-  REACT_APP_AUTH0_DOMAIN=dev-bndosol1eh368202.eu.auth0.com
-  REACT_APP_AUTH0_CLIENT_ID=9LkXcNOYLMjZKMrPAXbkFyn8KJtiakAo
-  ```` -->
-
-* start the server
-
-  ````
-   npm start
-  ````
-
-* Test The Routes
-
-  ````
-  http://localhost:3006/
-  ````
+## The Wireframes:
+![Home](./Assets/HomePage.jpg)
+![Profile](./Assets/Profile.jpg)
+![Starting](./Assets/StartingPage.jpg)
+![Post](./Assets/ThePost.jpg)
+![Aboutus](./Assets/AboutUs.jpg)
